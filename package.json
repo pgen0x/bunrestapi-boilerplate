@@ -1,0 +1,56 @@
+{
+  "name": "be-boilerplate",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/server.ts",
+    "dev": "bun --hot run src/server.ts",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate",
+    "seed": "prisma db seed",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
+    "lint": "eslint --fix",
+    "test": "bun test",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@eslint/compat": "^1.2.5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/bun": "latest",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/sequelize": "^4.28.20",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.7",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prisma": "^6.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.3.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "log4js": "^6.9.1",
+    "pg": "^8.13.1",
+    "prisma-json-schema-generator": "^5.1.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^3.24.1"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
