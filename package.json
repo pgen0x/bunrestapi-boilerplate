@@ -1,7 +1,12 @@
 {
-  "name": "be-boilerplate",
-  "module": "index.ts",
+  "name": "restapi-boilerplate",
   "type": "module",
+  "version": "1.0.0",
+  "description": "A REST API boilerplate with Bun, Prisma, Log4js, and Swagger",
+  "license": "MIT",
+  "author": {
+    "name": "pgen0x"
+  },
   "scripts": {
     "start": "bun run src/server.ts",
     "dev": "bun --hot run src/server.ts",

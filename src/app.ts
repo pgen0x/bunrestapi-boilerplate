@@ -1,7 +1,7 @@
 import express from 'express';
 import { PORT } from './config';
+import { getLogger } from './config/logger';
 import { API_BASE_URL } from './constants';
-import { getLogger } from './log/logger';
 import { errorHandler } from './middleware';
 import { setupRoutes } from './routes';
 import { setupSwagger } from './swagger';

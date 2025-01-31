@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import logger from '../log/logger';
+import logger from '../config/logger';
 import { ErrorResponse } from '../utils/ApiResponse';
 
 export const errorHandler = (
