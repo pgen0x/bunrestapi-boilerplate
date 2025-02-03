@@ -176,3 +176,6 @@ dist
 
 .env
 .husky
+
+# Docker
+docker-compose.override.yml

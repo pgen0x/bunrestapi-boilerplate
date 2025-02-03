@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      target: production
+    ports:
+      - '80:8888'
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://user:password@db:5432/proddb
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "bun run generate && bun run migrate:deploy && bun run start"
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: proddb
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U user -d proddb']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # reverse-proxy:
+  #   image: nginx:alpine
+  #   ports:
+  #     - '443:443'
+  #   volumes:
+  #     - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - app
+
+volumes:
+  postgres_data:
