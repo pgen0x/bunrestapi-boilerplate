@@ -4,7 +4,7 @@ import { getLogger } from 'log4js';
 import { API_BASE_URL } from '../constants';
 import { AuthController } from '../controllers/AuthController';
 import { UserController } from '../controllers/UserController';
-import { authMiddleware } from '../middleware';
+import { authMiddleware, validateUser } from '../middleware';
 import { awaitHandler } from '../utils/awaitHandler';
 const logger = getLogger('routes/index.ts'); // Pass the filename here
 
@@ -31,7 +31,11 @@ router.get(
   })
 );
 
-router.post('/auth/register', awaitHandler(AuthController.register));
+router.post(
+  '/auth/register',
+  validateUser,
+  awaitHandler(AuthController.register)
+);
 router.post('/auth/login', awaitHandler(AuthController.login));
 
 router.get(
