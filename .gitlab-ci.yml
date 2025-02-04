@@ -11,7 +11,7 @@ stages:
   #- deploy-dev
 
 # Linting Stage
-.lint:
+lint:
   stage: lint
   tags:
     - docker
@@ -27,7 +27,7 @@ stages:
     - npx eslint
 
 # Unit Testing Stage
-.test:
+test:
   stage: test
   tags:
     - docker
