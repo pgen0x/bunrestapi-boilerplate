@@ -1,0 +1,146 @@
+stages:
+  - lint
+  #- test
+  #- security
+  #- build
+  #- integration_test
+  #- deploy
+  #- post_deploy
+  
+  #- build-images
+  #- deploy-dev
+
+# Linting Stage
+lint:
+  stage: lint
+  tags:
+    - docker
+  image: oven/bun:1.1.5
+  only:
+    - merge_requests
+  before_script:
+    - echo "Checking Version and insatall dependencies..."
+    - bun --version
+    - bun install --ignore-scripts
+  script:
+    - echo "Run format and run lint..."
+    - bun run format
+    - bun run lint
+
+# Unit Testing Stage
+.test:
+  stage: test
+  tags:
+    - docker
+  image: node:alpine
+  only:
+    - merge_requests
+  before_script:
+    - echo "Checking Version Node, npn and insatall dependencies..."
+    - node -v
+    - npm -v
+    - npm install
+  script:
+    - echo "Running tests..."
+    #- npm test
+
+#Security stage (e.g., Dependency Scanning)
+.security:
+  stage: security
+  tags:
+    - docker
+  image: node:alpine
+  only:
+    - merge_requests
+  before_script:
+    - echo "Checking Version Node, npn and insatall dependencies..."
+    - node -v
+    - npm -v
+    - npm install
+  script:
+    - echo "Running dependency vulnerability scan..."
+    - npm audit --audit-level=high # Example of dependency vulnerability scan
+  allow_failure: true # Doesn't block the pipeline, but warns
+
+# Build Stage
+.build:
+  stage: build
+  tags:
+    - docker
+  image: node:alpine
+  only:
+    - merge_requests
+  before_script:
+    - echo "Checking Version Node, npn and insatall dependencies..."
+    - node -v
+    - npm -v
+    - npm install
+  script:
+    - echo "Building Next.js project...."
+    - npm run build
+    - echo "Save artifacts..."
+  artifacts:
+    paths:
+      - .next
+    expire_in: 1 week
+
+# Integration Testing Stage
+# Deploy to Development Server
+# Deploy to Staging Server
+# Post-Deploy Stage (e.g., Smoke Tests, Notifications)
+
+#Build image and push to gitlab repository
+.build-images:
+  stage: build-images
+  tags:
+    - docker
+  image: docker:latest
+  services:
+    - docker:dind
+  when: on_success
+  only:
+    - main
+  script:
+    - echo "Start build images..."
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+    - docker build -t $CI_REGISTRY_IMAGE -t $CI_REGISTRY_IMAGE:$APP_VERSION .
+    - docker image ls
+    - docker push --all-tags $CI_REGISTRY_IMAGE
+    - echo "Images has been pushed to the registry..."
+    - echo "Build images ffinished and success.."
+
+#Build image and push to docker hub repository
+.build-images:
+  stage: build-images
+  tags:
+    - shell
+  when: on_success
+  only:
+    - main
+  script:
+    - cat /etc/os-release
+    - docker --version
+    - echo "Start build images..."
+    - echo $CI_PASS_REPO | docker login -u $CI_USER_REPO --password-stdin 
+    - docker build -t $CI_REPOSITORY_LINK -t $CI_REPOSITORY_LINK:$APP_VERSION .
+    - docker image ls
+    - docker push --all-tags $CI_REPOSITORY_LINK
+    - echo "Images has been pushed to the registry..."
+    - echo "Build images ffinished and success.."
+
+#Automatic deploy to dev server with jenkin.
+.deploy-dev:
+  stage: deploy-dev
+  tags:
+    - docker
+  image: curlimages/curl:latest
+  services:
+    - docker:dind
+  when: on_success
+  only:
+    - main
+  script:
+    - echo "Deploying to the server...."
+    - echo "Call Jenkins server for deploy images to server.."
+    - curl --user $JENKINS_USER:$JENKINS_PASS http://43.252.144.37:8080/job/Auto-Deploy-to-Dev-Server/build?token=$TOKEN_DEPLOY
+    - echo "Deploying Done..."
