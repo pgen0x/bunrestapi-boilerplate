@@ -14,6 +14,7 @@
     "migrate:deploy": "prisma migrate deploy",
     "generate": "prisma generate",
     "seed": "prisma db seed",
+    "db:studio": "prisma studio",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
     "lint": "eslint --fix",
     "test": "bun test",

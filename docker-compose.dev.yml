@@ -16,7 +16,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: sh -c "bun run migrate:dev && bun run generate && bun run start"
+    command: sh -c "bun run migrate:dev && bun run generate && bun run dev"
 
   db:
     image: postgres:16

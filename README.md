@@ -35,7 +35,7 @@ bun add -g prisma
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/bun-boilerplate.git
+git clone https://github.com/pgen0x/bunrestapi-boilerplate.git
 cd bun-boilerplate
 ```
 
@@ -177,6 +177,54 @@ git push origin feature/your-feature
 ```
 
 5. Open a pull request.
+
+## Dockerization
+
+This project can be containerized using Docker. The Dockerfile is provided in the root directory.
+
+### Build the Docker image
+
+To build the Docker image, run the following command:
+
+```bash
+docker build -t my-api .
+```
+
+### Run the Docker container
+
+To run the Docker container, use the following command:
+
+```bash
+docker run -p 8888:8888 my-api
+```
+
+## Docker Compose Setup
+
+This project supports three environments via Docker Compose: **development**, **staging**, and **production**.
+
+### 1. Development (`docker-compose.dev.yml`)
+
+**Usage**:
+
+```bash
+docker-compose -f docker-compose.dev.yml up --build
+```
+
+### 2. Staging (`docker-compose.staging.yml`)
+
+**Usage**:
+
+```bash
+docker-compose -f docker-compose.staging.yml up --build
+```
+
+### 3. Production (`docker-compose.prod.yml`)
+
+**Usage**:
+
+```bash
+docker-compose -f docker-compose.prod.yml up --build
+```
 
 ## License
 
