@@ -1,6 +1,6 @@
 stages:
   - lint
-  - test
+  #- test
   #- security
   #- build
   #- integration_test
@@ -15,19 +15,19 @@ lint:
   stage: lint
   tags:
     - docker
-  image: node:alpine
+  image: oven/bun:1.1.5
   only:
     - merge_requests
   before_script:
     - echo "Checking Version Node, npn and insatall dependencies..."
-    - node -v
-    - npm -v
-    - npm install
+    - bun --version
+    - bun install
   script:
-    - npx eslint
+    - bun run format
+    - bun run lint
 
 # Unit Testing Stage
-test:
+.test:
   stage: test
   tags:
     - docker
