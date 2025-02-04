@@ -36,7 +36,7 @@ bun add -g prisma
 
 ```bash
 git clone https://github.com/pgen0x/bunrestapi-boilerplate.git
-cd bun-boilerplate
+cd bunrestapi-boilerplate
 ```
 
 2. Install dependencies:
