@@ -19,10 +19,11 @@ lint:
   only:
     - merge_requests
   before_script:
-    - echo "Checking Version Node, npn and insatall dependencies..."
+    - echo "Checking Version and insatall dependencies..."
     - bun --version
     - bun install
   script:
+    - echo "Run format and run lint..."
     - bun run format
     - bun run lint
 
