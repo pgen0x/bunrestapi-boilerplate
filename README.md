@@ -32,11 +32,16 @@ bun add -g prisma
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository from github or gitlab:
 
 ```bash
 git clone https://github.com/pgen0x/bunrestapi-boilerplate.git
 cd bunrestapi-boilerplate
+```
+
+```bash
+git clone https://ember9.snapinnovations.io/ilhamnst/restapi-boilerplate.git
+cd restapi-boilerplate
 ```
 
 2. Install dependencies:
