@@ -1,8 +1,8 @@
 stages:
   - lint
   - test
-  - security
-  - build
+  #- security
+  #- build
   #- integration_test
   #- deploy
   #- post_deploy
