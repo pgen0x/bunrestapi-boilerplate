@@ -39,3 +39,5 @@ app.listen(PORT, () => {
     `Swagger UI is available at http://localhost:${PORT}${API_BASE_URL}/docs`
   );
 });
+
+export { app };

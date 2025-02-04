@@ -18,6 +18,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
     "lint": "eslint --fix",
     "test": "bun test",
+    "test:watch": "bun test --watch",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -29,6 +30,7 @@
     "@types/express-session": "^1.18.1",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/sequelize": "^4.28.20",
+    "@types/supertest": "^6.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.7",
     "eslint": "^9.19.0",
@@ -38,7 +40,8 @@
     "lint-staged": "^15.4.3",
     "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "prisma": "^6.3.0"
+    "prisma": "^6.3.0",
+    "supertest": "^7.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
