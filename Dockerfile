@@ -22,3 +22,5 @@ ENV NODE_ENV=staging
 FROM base AS development
 
 ENV NODE_ENV=development
+
+CMD ["sh", "-c", "bun run migrate:deploy && bun run generate && bun run start"]

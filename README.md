@@ -200,7 +200,7 @@ docker build -t my-api .
 To run the Docker container, use the following command:
 
 ```bash
-docker run -p 8888:8888 my-api
+docker run -p 8888:8888 --env-file .env my-api
 ```
 
 ## Docker Compose Setup
@@ -220,7 +220,7 @@ docker-compose -f docker-compose.dev.yml up --build
 **Usage**:
 
 ```bash
-docker-compose -f docker-compose.staging.yml up --build
+docker-compose -f docker-compose.staging.yml up --build -d
 ```
 
 ### 3. Production (`docker-compose.prod.yml`)
@@ -228,7 +228,7 @@ docker-compose -f docker-compose.staging.yml up --build
 **Usage**:
 
 ```bash
-docker-compose -f docker-compose.prod.yml up --build
+docker-compose -f docker-compose.prod.yml up --build -d
 ```
 
 ## License
