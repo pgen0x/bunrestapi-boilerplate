@@ -21,7 +21,7 @@ lint:
   before_script:
     - echo "Checking Version and insatall dependencies..."
     - bun --version
-    - bun install
+    - bun install --frozen-lockfile --ignore-scripts
   script:
     - echo "Run format and run lint..."
     - bun run format
