@@ -44,7 +44,7 @@ test:
     #- npm test
 
 #Security stage (e.g., Dependency Scanning)
-security:
+.security:
   stage: security
   tags:
     - docker
@@ -62,7 +62,7 @@ security:
   allow_failure: true # Doesn't block the pipeline, but warns
 
 # Build Stage
-build:
+.build:
   stage: build
   tags:
     - docker
