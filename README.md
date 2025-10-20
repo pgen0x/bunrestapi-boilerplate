@@ -23,7 +23,6 @@ A modern, scalable, and production-ready boilerplate for building APIs with **Bu
 ### Prerequisites
 
 - **Bun**: Install Bun from [bun.sh](https://bun.sh/).
-- **Node.js**: Install Node.js from [nodejs.org](https://nodejs.org/).
 - **Prisma**: Install Prisma CLI globally:
 
 ```bash
