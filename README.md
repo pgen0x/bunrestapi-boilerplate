@@ -106,7 +106,9 @@ Create a .env file in the root directory with the following variables:
 PORT=8888
 DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
 JWT_SECRET="your-secret-key"
-NODE_ENV="development"
+NODE_ENV="production"
+SESSION_SECRET="your-session-secret"
+API_URL=https://example.com
 ```
 
 ## Logging
