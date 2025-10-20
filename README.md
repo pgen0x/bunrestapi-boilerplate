@@ -55,7 +55,7 @@ bun install
 - Run migrations:
 
 ```bash
-npx prisma migrate dev --name init
+bunx prisma migrate dev --name init
 ```
 
 4. Start the server:
