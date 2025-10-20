@@ -2,7 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import { PORT } from './config';
 import { getLogger } from './config/logger';
-import { API_BASE_URL } from './constants';
+import { API_BASE_URL, API_URL } from './constants';
 import { errorHandler } from './middleware';
 import { setupRoutes } from './routes';
 import { setupSwagger } from './swagger';
@@ -35,9 +35,7 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   logger.info(` Server is running on http://localhost:${PORT}`);
-  logger.info(
-    `Swagger UI is available at http://localhost:${PORT}${API_BASE_URL}/docs`
-  );
+  logger.info(`Swagger UI is available at ${API_URL}${API_BASE_URL}/docs`);
 });
 
 export { app };

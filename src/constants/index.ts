@@ -1,5 +1,9 @@
 export const API_VERSION = 'v1';
 export const API_BASE_URL = `/api/${API_VERSION}`;
+export const API_URL =
+  process.env.NODE_ENV === 'production'
+    ? process.env.API_URL
+    : `http://localhost:${process.env.PORT || 8888}`;
 
 export const DEFAULT_LIMIT = 10;
 export const DEFAULT_OFFSET = 0;
